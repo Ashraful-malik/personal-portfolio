@@ -4,10 +4,12 @@ import { ThemeProvider } from 'next-themes';
 
 export const metadata = {
   title: 'Ashraful Malik | Full-Stack Developer & UI Designer',
-  description: "Ashraful Malik's personal portfolio showcasing projects and skills.",
+  description:
+    "Hi, I'm Ashraful malik, a full stack developer and creative frontend designer. I craft modern, scalable, and user-friendly web experiences that bring ideas to life.",
   openGraph: {
     title: 'Ashraful Malik | Full-Stack Developer & UI Designer',
-    description: "Ashraful Malik's personal portfolio showcasing projects and skills.",
+    description:
+      'Full Stack Developer & Frontend Designer creating modern, scalable, and user-friendly web experiences.',
     url: 'https://ashrafulmalik.online/',
     siteName: 'Ashraful Malik portfolio',
     images: [
@@ -23,7 +25,8 @@ export const metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Ashraful Malik | Full-Stack Developer & UI Designer',
-    description: "Ashraful Malik's personal portfolio showcasing projects and skills.",
+    description:
+      'Full Stack Developer & Frontend Designer creating modern, scalable, and user-friendly web experiences.',
     images: '/image/portfolio-image.png',
     creator: '@ashraful__malik',
   },
