@@ -6,18 +6,32 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "format": "prettier --write .",
+    "check-format": "prettier --check ."
   },
   "dependencies": {
+    "clsx": "^2.1.1",
+    "dompurify": "^3.2.6",
+    "gray-matter": "^4.0.3",
+    "jsdom": "^26.1.0",
+    "lucide-react": "^0.525.0",
+    "markdown-it": "^14.1.0",
+    "motion": "^12.23.11",
+    "next": "15.4.3",
+    "next-themes": "^0.4.6",
     "react": "19.1.0",
     "react-dom": "19.1.0",
-    "next": "15.4.3"
+    "tailwind-merge": "^3.3.1"
   },
   "devDependencies": {
+    "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4",
-    "tailwindcss": "^4",
+    "@tailwindcss/typography": "^0.5.16",
     "eslint": "^9",
     "eslint-config-next": "15.4.3",
-    "@eslint/eslintrc": "^3"
+    "prettier": "^3.6.2",
+    "prettier-plugin-tailwindcss": "^0.6.14",
+    "tailwindcss": "^4"
   }
 }

@@ -1,26 +1,70 @@
-@import "tailwindcss";
+@import 'tailwindcss';
+@plugin "@tailwindcss/typography";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  /* Brand */
+  --color-brand-primary: oklch(0.68 0.21 42); /* your original */
+  --color-brand-secondary: oklch(0.75 0.14 250); /* cooler, soft accent */
+
+  /* Backgrounds */
+  --color-bg-default: oklch(0.985 0 0); /* almost white */
+  --color-bg-subtle: oklch(0.96 0 0); /* light gray background sections */
+  --color-bg-inverse: oklch(0.24 0 0); /* dark for inverse sections */
+
+  /* Text */
+  --color-text-primary: oklch(0.18 0 0); /* near black, AA+ on white */
+  --color-text-secondary: oklch(0.45 0.02 250); /* muted gray */
+  --color-text-inverse: oklch(0.97 0 0); /* white text on dark */
+
+  /* Borders */
+  --color-border: oklch(0.83 0 0); /* soft gray, AA visible on white */
+
+  /* States */
+  --color-success: oklch(0.72 0.17 145); /* green, WCAG AA on white */
+  --color-warning: oklch(0.85 0.18 85); /* amber, AA on white */
+  --color-error: oklch(0.62 0.24 25); /* deep red, AA on white */
+}
+.dark {
+  /* Backgrounds */
+  --color-bg-default: oklch(0.15 0 0); /* deep gray */
+  --color-bg-subtle: oklch(0.2 0 0); /* slightly lighter panels */
+  --color-bg-inverse: oklch(0.97 0 0); /* white for inverse elements */
+
+  /* Text */
+  --color-text-primary: oklch(0.93 0 0); /* near white */
+  --color-text-secondary: oklch(0.72 0 0); /* softer gray for body text */
+  --color-text-inverse: oklch(0.15 0 0); /* dark text on light bg */
+
+  /* Borders */
+  --color-border: oklch(0.35 0 0); /* mid-gray border */
+
+  /* States */
+  --color-success: oklch(0.72 0.17 145); /* same as light (works on dark) */
+  --color-warning: oklch(0.82 0.18 85);
+  --color-error: oklch(0.62 0.24 25);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-general-sans);
+  background-color: var(--color-bg-default);
+  color: var(--color-text-primary);
+  ::selection {
+    background-color: var(--color-brand-primary);
+    color: var(--color-text-primary);
+  }
+}
+
+/* animation  */
+.word {
+  display: inline-block;
+  /* promotes each word to its own compositor layer on most engines */
+  will-change: transform, opacity;
+  /* optional: nudge onto the GPU on older Safari/Chrome */
+  transform: translateZ(0);
 }

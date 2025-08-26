@@ -1,0 +1,10 @@
+# Ignore build and system files
+node_modules
+.next
+dist
+build
+public
+
+# Optional
+*.svg
+package-lock.json
