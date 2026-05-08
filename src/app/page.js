@@ -8,7 +8,7 @@ import TextScroll from '@/components/projects/TextScroll';
 export default function Page() {
   return (
     <div className="relative overflow-hidden">
-      <DotBackground />
+      {/* <DotBackground /> */}
       <HeroSection />
       {/* Project title */}
       <TextScroll />
