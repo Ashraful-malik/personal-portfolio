@@ -19,7 +19,7 @@ const projectDetails = [
       'Create, track, and complete coding challenges. Stay accountable and grow your skills, one streak at a time. ',
     stack: ['nextjs', 'nodejs', 'tailwind', 'mongodb', 'clerk'],
     image: '/image/projectImages/journeyskill-website.png',
-    link: 'https://www.journeyskill.online/',
+    link: 'https://journeyskill.vercel.app/',
   },
   {
     name: 'Tweaktail',
