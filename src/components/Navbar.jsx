@@ -1,115 +1,81 @@
 'use client';
-import { Menu, X } from 'lucide-react';
-import Link from 'next/link';
-import React, { useState } from 'react';
-import { motion, useMotionValueEvent, useScroll } from 'motion/react';
-import ThemeSwitcher from './ThemeSwitcher';
-import { cn } from '@/utility/cn';
-import Image from 'next/image';
 
-function Navbar() {
+import { useState } from 'react';
+import Link from 'next/link';
+import { Menu, X } from 'lucide-react';
+
+export default function Navbar() {
+  const [open, setOpen] = useState(false);
+
   const links = [
     { name: 'Home', href: '/#home' },
-    { name: 'Project', href: '/#projects' },
-    { name: 'Blog', href: '/blogs' },
+    { name: 'Projects', href: '/#projects' },
+    { name: 'Contact', href: '/#contact' },
   ];
 
-  const [hover, setHover] = useState(null);
-  const { scrollY } = useScroll();
-  const [scrolled, setScrolled] = useState(false);
-  const [mobileOpen, setMobileOpen] = useState(false);
-
-  useMotionValueEvent(scrollY, 'change', (latest) => {
-    setScrolled(latest > 20);
-  });
-
   return (
-    <motion.nav
-      animate={{
-        width: scrolled ? '90%' : '100%',
-        y: scrolled ? 10 : 0,
-        borderWidth: scrolled ? '1px' : '0px',
-      }}
-      className={cn(
-        `fixed inset-x-0 z-20 mx-auto mt-1 flex max-w-5xl items-center justify-between rounded-full px-4 py-2 transition-colors duration-300`,
-        scrolled ? 'border-border bg-bg-subtle border' : 'border-transparent bg-transparent',
-      )}
-      onMouseLeave={() => setHover(null)}
+    <nav
+      id="navbar"
+      className="fixed top-0 right-0 left-0 z-50 border-b border-[rgba(30,30,30,0.5)] bg-[rgba(10,10,10,0.84)] backdrop-blur transition-all duration-300"
     >
-      {/* logo */}
-      <div>
-        <Link href="/">
-          <Image
-            src="/image/ashraful.png"
-            width={200}
-            height={200}
-            className="h-10 w-10"
-            alt="logo"
-          />
-        </Link>
-        {/* <div className="h-9 w-9 rounded-full bg-black" /> */}
-      </div>
-
-      {/* desktop links */}
-      <div className="hidden flex-wrap gap-10 md:flex">
-        {links.map((link, idx) => (
-          <Link
-            key={idx}
-            href={link.href}
-            onMouseEnter={() => setHover(idx)}
-            className="group relative cursor-pointer rounded-full px-4 py-2 text-base font-medium"
-          >
-            <span className="group-hover:text-text-inverse relative">{link.name}</span>
-            {hover === idx && (
-              <motion.div
-                layoutId="hover-element"
-                className="bg-bg-inverse absolute inset-0 -z-[1] rounded-xl"
-                transition={{ duration: 0.2 }}
-              />
-            )}
-          </Link>
-        ))}
-      </div>
-
-      {/* theme + mobile toggle */}
-      <div className="flex items-center gap-3">
-        <ThemeSwitcher />
-        <button
-          className="ring-brand-primary rounded-lg p-2 focus:ring-1 focus:outline-none md:hidden"
-          aria-label="Toggle Menu"
-          onClick={() => setMobileOpen((prev) => !prev)}
-        >
-          {mobileOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
-      </div>
-
-      {/* mobile menu */}
-      {mobileOpen && (
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -20 }}
-          className="bg-bg-default border-border absolute top-15 right-4 w-56 rounded-xl border shadow-lg md:hidden"
-        >
-          <div className="flex flex-col items-start gap-3 p-4">
-            {links.map((link, idx) => (
-              <Link
-                key={idx}
-                href={link.href}
-                className="hover:bg-bg-subtle w-full rounded-lg px-3 py-2 text-left text-base font-medium"
-                onClick={() => setMobileOpen(false)}
-              >
-                {link.name}
-              </Link>
-            ))}
-            <div className="border-border w-full border-t pt-2">
-              <ThemeSwitcher />
-            </div>
+      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
+        {/* Logo */}
+        <Link href="/" className="flex items-center gap-3">
+          <div className="bg-accent flex h-8 w-8 items-center justify-center rounded-full text-[11px] font-bold text-white">
+            AM
           </div>
-        </motion.div>
+          <span className="hidden text-sm font-semibold tracking-[0.04em] text-white sm:block">
+            Ashraful Malik
+          </span>
+        </Link>
+
+        {/* Desktop Links */}
+        <div className="hidden items-center gap-8 md:flex">
+          {links.map((link) => (
+            <Link
+              key={link.name}
+              href={link.href}
+              className="nav-link text-text-light text-sm transition-colors hover:text-white"
+            >
+              {link.name}
+            </Link>
+          ))}
+        </div>
+
+        {/* Right Side */}
+        <div className="flex items-center gap-3">
+          <Link
+            href="#contact"
+            className="btn-fill hidden items-center rounded-full border border-white/20 px-4 py-2 text-sm text-white sm:flex"
+          >
+            <span>Let's talk →</span>
+          </Link>
+
+          {/* Mobile Menu Button */}
+          <button
+            onClick={() => setOpen(!open)}
+            className="p-1 text-gray-300 hover:text-white md:hidden"
+          >
+            {open ? <X size={20} /> : <Menu size={20} />}
+          </button>
+        </div>
+      </div>
+
+      {/* Mobile Menu */}
+      {open && (
+        <div className="flex flex-col gap-4 border-t border-gray-800 bg-[rgba(10,10,10,0.96)] px-6 py-4 md:hidden">
+          {links.map((link) => (
+            <Link
+              key={link.name}
+              href={link.href}
+              onClick={() => setOpen(false)}
+              className="text-sm text-gray-300 hover:text-white"
+            >
+              {link.name}
+            </Link>
+          ))}
+        </div>
       )}
-    </motion.nav>
+    </nav>
   );
 }
-
-export default Navbar;

@@ -6,28 +6,42 @@ import { motion, useAnimation, useInView } from 'framer-motion';
 
 const projectDetails = [
   {
-    name: 'Tweaktail',
+    name: 'khauspot',
     description:
-      'Build Tailwind components visually, export production-ready code instantly. TweakTail helps developers and designers create UIs 10x faster without CSS headaches ',
-    stack: ['shadcn', 'next', 'tailwind'],
-    image: '/image/projectImages/tweaktail.png',
-    link: 'https://www.tweaktail.xyz/',
+      'KhauSpot helps you explore authentic neighborhood food spots, check in on the go, and spotlight underrated local vendors.',
+    stack: ['nextjs', 'tailwind', 'mongodb', 'nodejs', 'clerk'],
+    image: '/image/projectImages/khauspot-website.png',
+    link: 'https://www.khauspot.vercel.app/',
   },
-
   {
     name: 'Journeyskill',
     description:
       'Create, track, and complete coding challenges. Stay accountable and grow your skills, one streak at a time. ',
-    stack: ['next', 'nodejs', 'tailwind', 'mongodb'],
-    image: '/image/projectImages/journeyskill.png',
+    stack: ['nextjs', 'nodejs', 'tailwind', 'mongodb', 'clerk'],
+    image: '/image/projectImages/journeyskill-website.png',
     link: 'https://www.journeyskill.online/',
+  },
+  {
+    name: 'Tweaktail',
+    description:
+      'Build Tailwind components visually, export production-ready code instantly. TweakTail helps developers and designers create UIs 10x faster without CSS headaches ',
+    stack: ['shadcn', 'nextjs', 'tailwind'],
+    image: '/image/projectImages/tweaktail.png',
+    link: 'https://www.tweaktail.xyz/',
   },
 ];
 
 function Projects() {
   return (
-    <section className="py-20" id="projects">
+    <section className="py-32" id="projects">
       <Container>
+        <div className="reveal mb-4 flex items-center gap-3">
+          <div className="bg-accent h-1.5 w-1.5 rounded-full"></div>
+          <span className="snum">• Projects</span>
+        </div>
+        <h2 className="font-syne mb-12 text-2xl text-[clamp(2rem,4vw,3.5rem)] font-bold">
+          Things I've Built
+        </h2>
         {projectDetails.map((project, index) => (
           <AnimatedCard key={index} index={index}>
             <ProjectCard
